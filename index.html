@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Panasonic Cloud Comfort API</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script async src="jquery.min.js"></script>
+    <script>
+        function login() {
+            const [username, password] = [$('#username').val(), $('#password').val()]
+            if (username && password) {
+                $('#errorBox').hide();
+                $.post('api.php?action=login', {username, password}, function (res) {
+                    if (res.code) {
+                        $('#errorMsg').text("Error: " + res.message);
+                        $('#errorBox').show();
+                        return;
+                    }
+                    console.log('RES', res);
+                    localStorage.setItem('token', res.uToken);
+                }, 'json');
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="form-container">
+    <h1>Panasonic Cloud Comfort API Login</h1>
+    <hr/>
+    <div class="container">
+        <label for="username"><strong>Username</strong></label>
+        <input id="username" placeholder="Enter Username" required type="text">
+        <label for="password"><strong>Password</strong></label>
+        <input id="password" placeholder="Enter Password" required type="password">
+    </div>
+    <button onclick="login()" type="submit">Login</button>
+    <div class="container" id="errorBox" style="display:none; background-color: lightcoral;">
+        <span id="errorMsg" style="padding-left: 15px"></span>
+    </div>
+    <br>
+    <div class="container" style="background-color: #eee">
+        <label style="padding-left: 15px">
+            <input checked="checked" name="remember" type="checkbox"> Remember me
+        </label>
+    </div>
+</div>
+</body>
+</html>

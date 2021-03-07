@@ -1,2 +1,6 @@
-# panasonic_comfort_cloud_api
-An attempt at listing the API for Panasonic Comfort Cloud, made available via PHP
+# Panasonic Comfort Cloud API
+
+A very basic PHP project using the Panasonic Comfort Cloud API.
+
+# Credit
+Most of the API information comes from: https://github.com/lostfields/python-panasonic-comfort-cloud/
